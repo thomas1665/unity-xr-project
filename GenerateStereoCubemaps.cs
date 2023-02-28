@@ -38,8 +38,6 @@ public class GenerateStereoCubemaps : MonoBehaviour
             cam.RenderToCubemap(cubemapLeft, 63, Camera.MonoOrStereoscopicEye.Mono);
         }
 
-        //optional: convert cubemaps to equirect
-
         if (equirect == null)
         {
             return;
@@ -58,7 +56,6 @@ public class GenerateStereoCubemaps : MonoBehaviour
         Texture2D toTexture2D(RenderTexture rTex)
         {
             Texture2D tex = new Texture2D(4096, 4096, TextureFormat.ARGB32, false);
-            // ReadPixels looks at the active RenderTexture.
             RenderTexture.active = rTex;
             tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
             tex.Apply();
