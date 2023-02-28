@@ -14,7 +14,7 @@ public class PlayArea : MonoBehaviour
     private int Height = 1000;
     private int Depth = 1000;
     private int space = 100;
-    public float raycastDistance = 100f;
+    private float raycastDistance = 100f;
 
     private void Awake()
     {
