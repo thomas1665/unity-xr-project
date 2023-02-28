@@ -15,14 +15,12 @@ public class PlayArea : MonoBehaviour
     private int Depth = 1000;
     private int space = 100;
     public float raycastDistance = 100f;
-    //public Button myButton;
 
     private void Awake()
     {
         gsc = Camera.main.GetComponent<GenerateStereoCubemaps>();
-      //  Button btn = myButton.GetComponent<Button>();
-        //btn.onClick.AddListener(PlaceAreas);
     }
+    
     public void PlaceAreas()
     {
         for (int x = -Width; x < Width; x += space)
