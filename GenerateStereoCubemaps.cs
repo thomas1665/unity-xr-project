@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 public class GenerateStereoCubemaps : MonoBehaviour
@@ -13,7 +9,7 @@ public class GenerateStereoCubemaps : MonoBehaviour
     public bool renderStereo = true;
     public float stereoSeparation = 0.064f;
 
-    public void Generate()
+    public void Generate(Vector3 position)
     {
         Camera cam = GetComponent<Camera>();
 
@@ -37,6 +33,8 @@ public class GenerateStereoCubemaps : MonoBehaviour
         {
             cam.RenderToCubemap(cubemapLeft, 63, Camera.MonoOrStereoscopicEye.Mono);
         }
+
+        //optional: convert cubemaps to equirect
 
         if (equirect == null)
         {
@@ -62,6 +60,17 @@ public class GenerateStereoCubemaps : MonoBehaviour
             return tex;
         }
         Texture2D myTexture = toTexture2D(equirect);
-        File.WriteAllBytes(AssetDatabase.GenerateUniqueAssetPath(Application.dataPath + "/Images/image.png"), myTexture.EncodeToPNG());
+        
+        Texture2D leftTexture = new Texture2D(myTexture.width, (myTexture.height) / 2);
+        Rect leftRect = new Rect(0, 0, 4096, 2048);
+        leftTexture.SetPixels(myTexture.GetPixels((int)leftRect.x, (int)leftRect.y, (int)leftRect.width, (int)leftRect.height));
+        leftTexture.Apply();
+        File.WriteAllBytes((Application.dataPath + "/Images/Location_" + position.x + "_" + position.z + "_leftImage.png"), leftTexture.EncodeToPNG());
+
+        Texture2D rightTexture = new Texture2D(myTexture.width, (myTexture.height) / 2);
+        Rect rightRect = new Rect(0, 2048, 4096, 2048);
+        rightTexture.SetPixels(myTexture.GetPixels((int)rightRect.x, (int)rightRect.y, (int)rightRect.width, (int)rightRect.height));
+        rightTexture.Apply();
+        File.WriteAllBytes((Application.dataPath + "/Images/Location_" + position.x + "_" + position.z + "_rightImage.png"), rightTexture.EncodeToPNG());
     }
 }
