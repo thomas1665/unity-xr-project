@@ -22,16 +22,15 @@ public class PlayArea : MonoBehaviour
     public int space = 100;
     private float raycastDistance = 300f;
     private GameObject def;
-    private ProBuilderGeometryCutAndSave pbGCS;
+    private GeometryCutAndSave gcs;
 
     private void Awake()
     {
-        pbGCS = gameObject.AddComponent<ProBuilderGeometryCutAndSave>();
+        gcs = gameObject.AddComponent<GeometryCutAndSave>();
         gsc = Camera.main.GetComponent<GenerateStereoCubemaps>();
         def = GameObject.Find("default");
-        Debug.Log("Default Gameobject: " + def + " Position: " + def.transform.position);
-        Debug.Log("Awake: Original GameObject instance ID: " + def.GetInstanceID());
     }
+
     public void PlaceAreas()
     {
         HashSet<Vector3> placedPositions = new HashSet<Vector3>();
@@ -158,7 +157,6 @@ public class PlayArea : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Checked All Nearby Cubes");
     }
 
     // Helper method to update the JSON files for two cubes
@@ -213,11 +211,8 @@ public class PlayArea : MonoBehaviour
 
     private void SaveCubeGeometry(GameObject originalObject, Vector3 cutPosition, GameObject cube)
     {
-        Debug.Log("Default Gameobject: " + originalObject);
         MeshFilter meshFilter = originalObject.GetComponent<MeshFilter>();
-        Debug.Log("OriginalObject MeshFilter: " + meshFilter + ", Mesh: " + meshFilter.sharedMesh);
-        Debug.Log("SaveCubeGeometry: Original GameObject instance ID: " + originalObject.GetInstanceID());
         float cubeSize = 10f; // Adjust the size of the cube as needed
-        pbGCS.CutAndSaveCube(originalObject, cutPosition, cubeSize, cube);
+        gcs.CutAndSaveCube(originalObject, cutPosition, cubeSize, cube);
     }
 }
