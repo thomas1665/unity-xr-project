@@ -1,5 +1,5 @@
 //This script is used to cut out the geometry of a cube from a larger mesh and save it as an .obj file along with its .mtl file.
-//It is used in the GeometryCutAndSave.cs script.
+//It is used in the PlayArea.cs script.
 
 using UnityEngine;
 using System.Text;
