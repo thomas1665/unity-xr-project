@@ -226,7 +226,7 @@ public class GeometryCutAndSave : MonoBehaviour
         Material[] materials = meshRenderer.sharedMaterials;
 
         // Set the file paths for the OBJ and MTL files
-        string path = Application.dataPath + "/OppositeCutouts/" + cube.name + "_opposite.obj";
+        string path = Application.dataPath + "/InvertedCutouts/" + cube.name + "_inverted.obj";
         string objFilePath = path;
         string mtlFilePath = path.Replace(".obj", ".mtl");
 
