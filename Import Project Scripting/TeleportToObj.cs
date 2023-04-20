@@ -122,7 +122,7 @@ public class TeleportToObj : MonoBehaviour
                 float posX = (x > currentX) ? 3f : (x < currentX) ? -3f : 0f;
                 float posZ = (z > currentZ) ? 3f : (z < currentZ) ? -3f : 0f;
 
-                Vector3 position = Camera.main.transform.position + new Vector3(posX, 1f, posZ);
+                Vector3 position = Camera.main.transform.position + new Vector3(posX * 2, 1f, posZ * 2);
 
                 // Instantiate and configure the sphere
                 GameObject sphere = Instantiate(floatingSpherePrefab);
