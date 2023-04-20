@@ -31,7 +31,7 @@ public class GenerateStereoCubemaps : MonoBehaviour
         
         //Create a for loop that iterates through all objs in OppositeCutouts
         // Get all the asset GUIDs in the 'OppositeCutouts' folder
-        string[] guids = AssetDatabase.FindAssets("", new[] { "Assets/OppositeCutouts" });
+        string[] guids = AssetDatabase.FindAssets("", new[] { "Assets/InvertedCutouts" });
 
         // Iterate through each GUID and retrieve the corresponding asset path
         foreach (string guid in guids)
