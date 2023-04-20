@@ -213,7 +213,6 @@ public class PlayArea : MonoBehaviour
 
         // Read the contents of the JSON file into a string
         string jsonContent1 = File.ReadAllText(jsonFilePath1);
-        string jsonContent2 = File.ReadAllText(jsonFilePath2);
 
         // Deserialize the string into a JSON object
         JObject jsonObject1 = JObject.Parse(jsonContent1);
