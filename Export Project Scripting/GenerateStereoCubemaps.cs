@@ -43,7 +43,7 @@ public class GenerateStereoCubemaps : MonoBehaviour
             {
                 Debug.Log("Found OBJ file: " + path);
 
-                //Add in opposite obj at exact same position as def
+                // Get obj file at path
                 GameObject objPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
                 if (objPrefab == null)
                 {
